@@ -12,14 +12,9 @@ RUN set -xe && \
         docker-php-ext-enable phalcon && \
         cd ../.. && rm -rf v${PHALCON_VERSION}.tar.gz cphalcon-${PHALCON_VERSION} && \
         apk del .build-deps
-                
-        # Insall Phalcon Devtools, see https://github.com/phalcon/phalcon-devtools/
-        #curl -LO https://github.com/phalcon/phalcon-devtools/archive/v${PHALCON_DEV_TOOLS_VERSION}.tar.gz && \
-        #tar xzf v${PHALCON_DEV_TOOLS_VERSION}.tar.gz && \
-        #mv phalcon-devtools-${PHALCON_DEV_TOOLS_VERSION} /usr/local/phalcon-devtools && \
-        #ln -s /usr/local/phalcon-devtools/phalcon.php /usr/local/bin/phalcon
 
-#
-RUN docker-php-ext-install curl
-
+#AWS SDK requirements
 RUN docker-php-ext-install opcache
+
+#http://docs.aws.amazon.com/aws-sdk-php/v3/guide/getting-started/
+#http://docs.aws.amazon.com/aws-sdk-php/v3/api/
