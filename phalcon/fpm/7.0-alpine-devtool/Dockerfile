@@ -1,7 +1,6 @@
 FROM php:7.0-fpm-alpine
 
 ENV PHALCON_VERSION=3.1.2
-ENV PHALCON_DEV_TOOLS_VERSION=3.1.2
 
 # Compile Phalcon
 RUN set -xe && \
@@ -14,9 +13,9 @@ RUN set -xe && \
         apk del .build-deps
                 
         # Insall Phalcon Devtools, see https://github.com/phalcon/phalcon-devtools/
-        curl -LO https://github.com/phalcon/phalcon-devtools/archive/v${PHALCON_DEV_TOOLS_VERSION}.tar.gz && \
-        tar xzf v${PHALCON_DEV_TOOLS_VERSION}.tar.gz && \
-        mv phalcon-devtools-${PHALCON_DEV_TOOLS_VERSION} /usr/local/phalcon-devtools && \
+        curl -LO https://github.com/phalcon/phalcon-devtools/archive/v${PHALCON_VERSION}.tar.gz && \
+        tar xzf v${PHALCON_VERSION}.tar.gz && \
+        mv phalcon-devtools-${PHALCON_VERSION} /usr/local/phalcon-devtools && \
         ln -s /usr/local/phalcon-devtools/phalcon.php /usr/local/bin/phalcon
 
 # pdo_mysql extensions
