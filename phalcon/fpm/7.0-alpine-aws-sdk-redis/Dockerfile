@@ -11,16 +11,16 @@ RUN set -xe && \
         tar xzf v${PHALCON_VERSION}.tar.gz && cd cphalcon-${PHALCON_VERSION}/build && sh install && \
         docker-php-ext-enable phalcon && \
         cd ../.. && rm -rf v${PHALCON_VERSION}.tar.gz cphalcon-${PHALCON_VERSION} && \
+        #REDIS
+        pecl install redis && \
+        docker-php-ext-enable redis && \
+        rm -rf /var/cache/apk/* && \
+
         apk del .build-deps
 
 #AWS SDK requirements
 RUN docker-php-ext-install opcache
 
-#REDIS
-RUN apk add --update --no-cache autoconf g++ make && \
-  pecl install redis && \
-	docker-php-ext-enable redis && \
-  rm -rf /var/cache/apk/*
 #http://docs.aws.amazon.com/aws-sdk-php/v3/guide/getting-started/
 #http://docs.aws.amazon.com/aws-sdk-php/v3/api/
 #https://github.com/phpredis/phpredis
