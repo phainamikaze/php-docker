@@ -17,9 +17,10 @@ RUN set -xe && \
 RUN docker-php-ext-install opcache
 
 #REDIS
-RUN pecl install redis && \
-	docker-php-ext-enable redis
-
+RUN apk add --update --no-cache autoconf g++ make && \
+  pecl install redis && \
+	docker-php-ext-enable redis && \
+  rm -rf /var/cache/apk/*
 #http://docs.aws.amazon.com/aws-sdk-php/v3/guide/getting-started/
 #http://docs.aws.amazon.com/aws-sdk-php/v3/api/
 #https://github.com/phpredis/phpredis
